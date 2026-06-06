@@ -1,0 +1,113 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="fw-semibold fs-4">Add Application</h2>
+    </x-slot>
+
+    <div class="container py-4" style="max-width: 600px;">
+
+        {{-- Warning if no companies yet --}}
+        @if($companies->isEmpty())
+            <div class="alert alert-warning">
+                You have no companies yet.
+                <a href="{{ route('companies.create') }}">Add a company first</a> before adding an application.
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('applications.store') }}">
+            @csrf
+
+            <div class="mb-3">
+                <label class="form-label">Company *</label>
+                <select name="company_id" class="form-select @error('company_id') is-invalid @enderror" required>
+                    <option value="">Select Company</option>
+                    @foreach($companies as $company)
+                        <option value="{{ $company->id }}"
+                            {{ old('company_id') == $company->id ? 'selected' : '' }}>
+                            {{ $company->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('company_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Position Title *</label>
+                <input
+                    type="text"
+                    name="position"
+                    class="form-control @error('position') is-invalid @enderror"
+                    value="{{ old('position') }}"
+                    placeholder="e.g. Junior Laravel Developer"
+                    required
+                >
+                @error('position')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status *</label>
+                <select name="status" class="form-select @error('status') is-invalid @enderror" required>
+                    @foreach($statuses as $key => $label)
+                        <option value="{{ $key }}"
+                            {{ old('status', 'applied') === $key ? 'selected' : '' }}>
+                            {{ $label }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('status')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Applied Date *</label>
+                <input
+                    type="date"
+                    name="applied_date"
+                    class="form-control @error('applied_date') is-invalid @enderror"
+                    value="{{ old('applied_date', date('Y-m-d')) }}"
+                    required
+                >
+                @error('applied_date')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Job Link</label>
+                <input
+                    type="url"
+                    name="job_link"
+                    class="form-control @error('job_link') is-invalid @enderror"
+                    value="{{ old('job_link') }}"
+                    placeholder="https://linkedin.com/jobs/..."
+                >
+                @error('job_link')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Notes</label>
+                <textarea
+                    name="notes"
+                    class="form-control"
+                    rows="3"
+                    placeholder="e.g. Referral from a friend, salary range, recruiter name..."
+                >{{ old('notes') }}</textarea>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary" {{ $companies->isEmpty() ? 'disabled' : '' }}>
+                    Save Application
+                </button>
+                <a href="{{ route('applications.index') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+</x-app-layout>
