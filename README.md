@@ -29,4 +29,5 @@ Users → Companies → Applications (with direct user_id on applications for se
 6. Run `npm install && npm run build`
 7. Run `php artisan serve`
 
-![alt text](image.png)
+<img width="1339" height="852" alt="image" src="https://github.com/user-attachments/assets/aecc306e-4b89-4061-b548-d211848f175a" />
+
