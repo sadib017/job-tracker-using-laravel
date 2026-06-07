@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
     // Show all companies for the logged-in user
     public function index()
     {
-        $companies = Auth::user()->companies()->latest()->paginate(10);
+        $companies = Company::where('user_id', Auth::id())->latest()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 

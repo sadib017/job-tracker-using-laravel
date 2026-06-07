@@ -28,6 +28,4 @@ Users → Companies → Applications (with direct user_id on applications for se
 6. Run `npm install && npm run build`
 7. Run `php artisan serve`
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![alt text](image.png)
