@@ -4,7 +4,6 @@ A full-stack web application built with **Laravel** and **MySQL** to help users 
 
 ##
 ![Preview](screenshots/preview.png)
-##
 
 ## Features
 - User authentication (register, login, logout)
