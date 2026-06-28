@@ -1,6 +1,10 @@
 # Job Application Tracker
 
-A full-stack web application built with **Laravel 12** and **MySQL** to help users manage their job search.
+A full-stack web application built with **Laravel** and **MySQL** to help users manage their job search. I built it for myself to keep track of the jobs i applied, interviewed or scheduled. It reduces my hassle and help me visualize the tracking. 
+
+##
+![Preview](screenshots/preview.png)
+##
 
 ## Features
 - User authentication (register, login, logout)
@@ -28,6 +32,4 @@ Users → Companies → Applications (with direct user_id on applications for se
 5. Run `php artisan migrate`
 6. Run `npm install && npm run build`
 7. Run `php artisan serve`
-
-<img width="1339" height="852" alt="image" src="https://github.com/user-attachments/assets/aecc306e-4b89-4061-b548-d211848f175a" />
 
